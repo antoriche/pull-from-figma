@@ -138,13 +138,11 @@ async function pullFromFigma(fileKey, config) {
       nextSection += `/* Component ${name} */
       ${code}`;
 
-      nextSection += `export class ${child.name.replace(/\W+/g, '')} extends PureComponent {\n`;
-      nextSection += '  render() {\n';
-      nextSection += `    return <div className="master" style={{backgroundColor: "${figma.colorString(child.backgroundColor)}"}}>\n`;
-      nextSection += `      <C${child.name.replace(/\W+/g, '')} {...this.props} nodeId="${child.id}" />\n`;
-      nextSection += '    </div>\n';
-      nextSection += '  }\n';
-      nextSection += '}\n\n';
+      nextSection += `export const ${child.name.replace(/\W+/g, '')} = React.forwardRef((props, ref) => {\n`;
+      nextSection += `  return <div className="master" ref={ref} style={{backgroundColor: "${figma.colorString(child.backgroundColor)}"}}>\n`;
+      nextSection += `    <C${child.name.replace(/\W+/g, '')} {...props} nodeId="${child.id}" />\n`;
+      nextSection += '  </div>\n';
+      nextSection += '})\n\n';
     }
   }
 
@@ -156,7 +154,7 @@ async function pullFromFigma(fileKey, config) {
   contents += nextSection;
   nextSection = '';
 
-  contents += `export function getComponentFromId(id) {\n`;
+  contents += `function getComponentFromId(id) {\n`;
 
   for (const key in componentMap) {
     contents += `  if (id === "${key}") return ${componentMap[key].instance};\n`;
