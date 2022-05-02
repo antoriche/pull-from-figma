@@ -7,6 +7,7 @@ const args = require('args-parser')(process.argv);
 const fs = require('fs');
 const {exit} = require('process');
 const figma = require('./figma');
+const path = require('path');
 
 
 if (args.help) {
@@ -176,6 +177,7 @@ async function pullFromFigma(fileKey, config) {
   await Promise.all(Object.keys(file_content).filter((ref_)=>ref_.match(RegExp(ref))).map(async (ref_)=>{
     file_content[ref_].key = ref_;
     const contents = await pullFromFigma(file_content[ref_].figma_id, file_content[ref_]);
+    await fs.promises.mkdir(path.dirname(file_content[ref_].output), {recursive: true});
     await fs.promises.writeFile(file_content[ref_].output, contents);
   }));
 
