@@ -1,7 +1,7 @@
 {
   "name": "pull-from-figma",
-  "version": "1.0.0",
-  "description": "",
+  "version": "0.0.1",
+  "description": "this is a tool aiming to help developers to download and keep updated figma templates as react components",
   "main": "pull-from-figma.js",
   "bin": {
     "pull-from-figma": "./pull-from-figma.js"
@@ -9,7 +9,7 @@
   "scripts": {
     "start": "node pull-from-figma.js"
   },
-  "author": "",
+  "author": "antoriche",
   "license": "ISC",
   "dependencies": {
     "args-parser": "^1.3.0",
