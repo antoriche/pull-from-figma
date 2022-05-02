@@ -1,0 +1,25 @@
+{
+  "name": "pull-from-figma",
+  "version": "1.0.0",
+  "description": "",
+  "main": "pull-from-figma.js",
+  "bin": {
+    "pull-from-figma": "./pull-from-figma.js"
+  },
+  "scripts": {
+    "start": "node pull-from-figma.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "args-parser": "^1.3.0",
+    "axios": "^0.27.2",
+    "node-fetch": "^3.2.4"
+  },
+  "devDependencies": {
+    "@types/node": "^17.0.31",
+    "eslint": "^8.14.0",
+    "eslint-config-google": "^0.14.0",
+    "prettier": "^2.6.2"
+  }
+}
