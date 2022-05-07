@@ -1,6 +1,6 @@
 {
   "name": "pull-from-figma",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "this is a tool aiming to help developers to download and keep updated figma templates as react components",
   "main": "pull-from-figma.js",
   "repository": {

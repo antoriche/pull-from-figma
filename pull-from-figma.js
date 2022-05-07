@@ -88,13 +88,13 @@ async function pullFromFigma(fileKey, config) {
   const data = resp.data;
 
   const doc = data.document;
-  const canvas = doc.children[0];
+  const canvas = doc.children.map((c)=>c.children).flat();
   const html = '';
 
-  for (let i=0; i<canvas.children.length; i++) {
-    const child = canvas.children[i];
+  for (let i=0; i<canvas.length; i++) {
+    const child = canvas[i];
     if (child.visible !== false) {
-      const child = canvas.children[i];
+      const child = canvas[i];
       preprocessTree(child);
     }
   }
@@ -129,10 +129,10 @@ async function pullFromFigma(fileKey, config) {
   contents+=`import React, { PureComponent } from 'react';\n\n`;
   let nextSection = '';
 
-  for (let i=0; i<canvas.children.length; i++) {
-    const child = canvas.children[i];
+  for (let i=0; i<canvas.length; i++) {
+    const child = canvas[i];
     if (child.visible !== false) {
-      const child = canvas.children[i];
+      const child = canvas[i];
       const {name, code} = figma.createComponent(child, images, componentMap);
 
       nextSection += `/* Component ${name} */
